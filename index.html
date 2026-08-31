@@ -66,10 +66,46 @@ a{color:inherit}
   position:fixed;
   inset:0;
   background:
-    radial-gradient(1100px 480px at 50% -6%,rgba(230,184,60,.10),transparent 60%),
-    radial-gradient(900px 700px at 85% 10%,rgba(30,40,80,.35),transparent 55%),
+    radial-gradient(1200px 620px at 50% -8%,rgba(230,184,60,.20),transparent 62%),
+    radial-gradient(1000px 780px at 85% 8%,rgba(30,40,80,.42),transparent 55%),
+    radial-gradient(700px 500px at 12% 18%,rgba(230,184,60,.06),transparent 60%),
     var(--ink);
-  z-index:-2
+  z-index:-3
+}
+
+/* Starfield layer, echoing the reference site's scattered stars */
+.stars{
+  position:fixed;
+  inset:0;
+  z-index:-2;
+  pointer-events:none;
+  background-repeat:repeat;
+  background-image:
+    radial-gradient(1.6px 1.6px at 15px 25px, rgba(255,255,255,.9), transparent 60%),
+    radial-gradient(1.2px 1.2px at 75px 90px, rgba(255,255,255,.7), transparent 60%),
+    radial-gradient(1.4px 1.4px at 140px 45px, rgba(255,255,255,.85), transparent 60%),
+    radial-gradient(1px 1px at 190px 130px, rgba(255,255,255,.6), transparent 60%),
+    radial-gradient(1.6px 1.6px at 230px 20px, rgba(255,255,255,.8), transparent 60%),
+    radial-gradient(1.1px 1.1px at 260px 160px, rgba(255,255,255,.65), transparent 60%),
+    radial-gradient(1.3px 1.3px at 40px 170px, rgba(255,255,255,.75), transparent 60%),
+    radial-gradient(1px 1px at 300px 90px, rgba(255,255,255,.55), transparent 60%);
+  background-size: 340px 220px;
+  opacity:.55;
+  animation: twinkle 6s ease-in-out infinite alternate
+}
+
+.stars.stars-2{
+  background-position: 60px 40px;
+  background-size: 420px 280px;
+  opacity:.35;
+  animation-duration: 8s;
+  animation-delay: 1.5s
+}
+
+@keyframes twinkle{
+  0%{opacity:.35}
+  50%{opacity:.65}
+  100%{opacity:.4}
 }
 
 .grain{
@@ -96,7 +132,8 @@ a{color:inherit}
   object-fit:contain;
   border-radius:50%;
   opacity:0;
-  animation:rise 900ms ease forwards 80ms
+  animation:rise 900ms ease forwards 80ms;
+  filter: drop-shadow(0 0 28px rgba(255,216,115,.45)) drop-shadow(0 0 60px rgba(230,184,60,.25))
 }
 
 .wordmark-row{
@@ -179,13 +216,13 @@ h1 em{
 
 .horizon-glow{
   position:absolute;
-  top:-40px;
+  top:-60px;
   left:50%;
-  width:420px;
-  height:220px;
+  width:640px;
+  height:320px;
   transform:translateX(-50%);
-  background:radial-gradient(closest-side,rgba(255,216,115,.20),rgba(255,216,115,0) 70%);
-  filter:blur(6px);
+  background:radial-gradient(closest-side,rgba(255,216,115,.32),rgba(255,216,115,0) 70%);
+  filter:blur(8px);
   pointer-events:none
 }
 
@@ -522,6 +559,12 @@ footer .copy{
     opacity:1!important;
     transform:none!important
   }
+
+  .stars,
+  .stars.stars-2{
+    animation:none!important;
+    opacity:.45!important
+  }
 }
 </style>
 
@@ -530,6 +573,8 @@ footer .copy{
 <body>
 
 <div class="field"></div>
+<div class="stars"></div>
+<div class="stars stars-2"></div>
 <div class="grain"></div>
 
 <main class="hero">
